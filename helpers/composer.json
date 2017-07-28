@@ -1,0 +1,24 @@
+{
+    "name": "livelyworks/laraware",
+    "description": "Utilities library for Laravel",
+    "keywords": ["laravel Utilities", "laravel 5", "empty","isEmpty","ifIsset","isset","helpers","laravel 5.1", "laravel 5.2","laravel 5.3", "laravel 5.4", "reindex array"],
+    "license": "MIT",
+      "authors": [
+    {
+      "name": "Vinod Raut",
+      "email": "vinod@livelyworks.net"
+    }
+  ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.x|5.1.x|5.2.x|5.3.x|5.4.x"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers/helpers.php"
+        ]
+    },
+    "extra": {
+  },
+  "prefer-stable": true
+}
