@@ -18,7 +18,5 @@
             "src/helpers/helpers.php"
         ]
     },
-    "extra": {
-  },
   "prefer-stable": true
 }
