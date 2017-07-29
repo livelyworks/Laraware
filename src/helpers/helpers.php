@@ -6,15 +6,15 @@
      *
      *-------------------------------------------------------- */
 
-    if (!function_exists('is_empty')) {
+    if (!function_exists('isEmpty')) {
        /*
-        * Customized is_empty
+        * Customized isEmpty
         *
         * @param Mixed  $data  - Mixed data
         * 
         * @return array
         *---------------------------------------------------------------- */
-        function is_empty($data)
+        function isEmpty($data)
         {
             if (empty($data) === false) {
                 if (($data instanceof Illuminate\Database\Eloquent\Collection
@@ -32,9 +32,9 @@
             return true;
         }
     }
-    if (!function_exists('if_isset')) {
+    if (!function_exists('ifIsset')) {
         /*
-          * Check isset & is_empty & return the result based on values sent
+          * Check isset & isEmpty & return the result based on values sent
           *
           * @param Mixed  $data  - Mixed data - Note: Should no used direct function etc
           * @param Mixed  $ifSetValue  - Value if result is true
@@ -42,10 +42,10 @@
           * 
           * @return array
           *---------------------------------------------------------------- */        
-        function if_isset(&$data, $ifSetValue = '', $ifNotSetValue = '')
+        function ifIsset(&$data, $ifSetValue = '', $ifNotSetValue = '')
         {
             // check if value isset & not empty
-            if ((isset($data) === true) and (is_empty($data) === false)) {
+            if ((isset($data) === true) and (isEmpty($data) === false)) {
                 if (! is_string($ifSetValue) and is_callable($ifSetValue) === true) {
                     return call_user_func($ifSetValue, $data);
                 } elseif ($ifSetValue === true) {
