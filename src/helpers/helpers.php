@@ -6,52 +6,15 @@
      *
      *-------------------------------------------------------- */
 
-    /*
-      * Check isset & __isEmpty & return the result based on values sent
-      *
-      * @param Mixed  $data  - Mixed data - Note: Should no used direct function etc
-      * @param Mixed  $ifSetValue  - Value if result is true
-      * @param Mixed  $ifNotSetValue  - Value if result is false
-      * 
-      * @return array
-      *---------------------------------------------------------------- */
-
-    if (!function_exists('__ifIsset')) {
-        function __ifIsset(&$data, $ifSetValue = '', $ifNotSetValue = '')
-        {
-            // check if value isset & not empty
-            if ((isset($data) === true) and (__isEmpty($data) === false)) {
-                if (! is_string($ifSetValue) and is_callable($ifSetValue) === true) {
-                    return call_user_func($ifSetValue, $data);
-                } elseif ($ifSetValue === true) {
-                    return $data;
-                } elseif ($ifSetValue !== '') {
-                    return $ifSetValue;
-                }
-
-                return true;
-            } else {
-                if (! is_string($ifNotSetValue) and is_callable($ifNotSetValue) === true) {
-                    return call_user_func($ifNotSetValue);
-                } elseif ($ifNotSetValue !== '') {
-                    return $ifNotSetValue;
-                }
-
-                return false;
-            }
-        }
-    }
-
-    /*
-      * Customized isEmpty
-      *
-      * @param Mixed  $data  - Mixed data
-      * 
-      * @return array
-      *---------------------------------------------------------------- */
-
-    if (!function_exists('__isEmpty')) {
-        function __isEmpty($data)
+    if (!function_exists('is_empty')) {
+       /*
+        * Customized is_empty
+        *
+        * @param Mixed  $data  - Mixed data
+        * 
+        * @return array
+        *---------------------------------------------------------------- */
+        function is_empty($data)
         {
             if (empty($data) === false) {
                 if (($data instanceof Illuminate\Database\Eloquent\Collection
@@ -62,50 +25,78 @@
                     return true;
                 } elseif (is_object($data)) {
                     $data = (array) $data;
-
                     return empty($data);
                 }
-
                 return false;
             }
-
             return true;
         }
     }
+    if (!function_exists('if_isset')) {
+        /*
+          * Check isset & is_empty & return the result based on values sent
+          *
+          * @param Mixed  $data  - Mixed data - Note: Should no used direct function etc
+          * @param Mixed  $ifSetValue  - Value if result is true
+          * @param Mixed  $ifNotSetValue  - Value if result is false
+          * 
+          * @return array
+          *---------------------------------------------------------------- */        
+        function if_isset(&$data, $ifSetValue = '', $ifNotSetValue = '')
+        {
+            // check if value isset & not empty
+            if ((isset($data) === true) and (is_empty($data) === false)) {
+                if (! is_string($ifSetValue) and is_callable($ifSetValue) === true) {
+                    return call_user_func($ifSetValue, $data);
+                } elseif ($ifSetValue === true) {
+                    return $data;
+                } elseif ($ifSetValue !== '') {
+                    return $ifSetValue;
+                }
+                return true;
+            } else {
+                if (! is_string($ifNotSetValue) and is_callable($ifNotSetValue) === true) {
+                    return call_user_func($ifNotSetValue);
+                } elseif ($ifNotSetValue !== '') {
+                    return $ifNotSetValue;
+                }
+                return false;
+            }
+        }
+    }
 
-    /*
-    * Re Indexing using array value based on key
-    *
-    * @param array $array
-    * @param string $valueKey 
-    * @param closure function $closure
-    * @since - 29 JUN 2017
-    * @example uses
-        __reIndexArray([
-            ['id' => '9e0fec39-dd53-4636-b628-f0123f05b318', name= 'xyz'],
-            ['id' => '8e0fec39-ed53-5636-c628-f0123f05b618', name= 'abc']
-        ], 'id', function($item, $valueKey) {
-               $item['name'] =>  strtoupper($item['name']);
-               return $item;
-        });
+    if (!function_exists('re_index_array')) {
+       /*
+        * Re Indexing using array value based on key
+        *
+        * @param array $array
+        * @param string $valueKey 
+        * @param closure function $closure
+        * @since - 29 JUN 2017
+        * @example uses
+            re_index_array([
+                ['id' => '9e0fec39-dd53-4636-b628-f0123f05b318', name= 'xyz'],
+                ['id' => '8e0fec39-ed53-5636-c628-f0123f05b618', name= 'abc']
+            ], 'id', function($item, $valueKey) {
+                   $item['name'] =>  strtoupper($item['name']);
+                   return $item;
+            });
 
-        // Result
-            [
-                '9e0fec39-dd53-4636-b628-f0123f05b318' => [
-                    'id' => '9e0fec39-dd53-4636-b628-f0123f05b318',
-                    'name' => 'Xyz'
-                ],
-                '8e0fec39-ed53-5636-c628-f0123f05b618' => [
-                    'id' => '8e0fec39-ed53-5636-c628-f0123f05b618',
-                    'name' => 'Abc'
+            // Result
+                [
+                    '9e0fec39-dd53-4636-b628-f0123f05b318' => [
+                        'id' => '9e0fec39-dd53-4636-b628-f0123f05b318',
+                        'name' => 'Xyz'
+                    ],
+                    '8e0fec39-ed53-5636-c628-f0123f05b618' => [
+                        'id' => '8e0fec39-ed53-5636-c628-f0123f05b618',
+                        'name' => 'Abc'
+                    ]
                 ]
-            ]
 
-    * @return array.
-    *-------------------------------------------------------- */
-
-    if (!function_exists('__reIndexArray')) {
-        function __reIndexArray(array $array, $valueKey, $closure = null)
+        * @return array.
+        *-------------------------------------------------------- */
+        function re_index_array(array $array, $valueKey, $closure = null)
         {
             $newArray = [];
             if(!empty($array)) {
