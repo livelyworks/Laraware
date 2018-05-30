@@ -1,7 +1,7 @@
 {
     "name": "livelyworks/laraware",
     "description": "Utilities library for Laravel",
-    "keywords": ["laravel Utilities", "laravel 5", "empty","is_empty","if_isset","isset","helpers","laravel 5.1", "laravel 5.2","laravel 5.3", "laravel 5.4", "reindex array"],
+    "keywords": ["laravel Utilities", "laravel 5", "empty","isEmpty","ifIsset","isset","helpers","laravel 5.1", "laravel 5.2","laravel 5.3", "laravel 5.4","laravel 5.5","laravel 5.6", "reindex array"],
     "license": "MIT",
       "authors": [
     {
@@ -11,7 +11,7 @@
   ],
     "require": {
         "php": ">=5.4.0",
-        "laravel/framework": "5.1.x|5.2.x|5.3.x|5.4.x||5.5.x"
+        "laravel/framework": "5.1.x|5.2.x|5.3.x|5.4.x|5.5.x|5.6.x"
     },
     "autoload": {
         "files": [
