@@ -78,7 +78,7 @@
                 ['id' => '9e0fec39-dd53-4636-b628-f0123f05b318', name= 'xyz'],
                 ['id' => '8e0fec39-ed53-5636-c628-f0123f05b618', name= 'abc']
             ], 'id', function($item, $valueKey) {
-                   $item['name'] = strtoupper($item['name']);
+                   $item['name'] =>  strtoupper($item['name']);
                    return $item;
             });
 
@@ -118,63 +118,3 @@
             return $newArray;
         }
     }
-    /*
-    *  Please see re_index_array
-    * @return array
-    *---------------------------------------------------------------- */
-    if (!function_exists('reIndexArray')) { 
-        function reIndexArray(array $array, $valueKey, $closure = null) {
-            return re_index_array($array, $valueKey, $closure);
-        }
-    }
-
-/*
-    * Utility function to create array of nested array items strings (Concating parent key in to child key) & assign values to it.
-    * renamed of __nestedKeyValues
-    * 
-    * @param  $inputArray raw nested array 
-    * @param  $requestedJoiner joiner or word for string concat 
-    * @param  $prepend prepend string
-    * @param  $allStages if you want to create an array item for every stage 
-    * 
-    * @return void
-    *-------------------------------------------------------- */
-    if (!function_exists('nestedKeyValueArray')) {
-        function nestedKeyValueArray(array $inputArray, $requestedJoiner = '.', $prepend = null, $allStages = false)
-        {
-            $formattedArray = [];
-
-            foreach ($inputArray as $key => $value) {
-                $joiner = ($prepend == null) ? '' : $requestedJoiner;
-
-                // if array run this again to grab the child items to process
-                if (is_array($value)) {
-                    if ($allStages === true) {
-                        array_push($formattedArray, $prepend);
-                    }
-
-                    $formattedArray = array_merge($formattedArray, __nestedKeyValues($value, $requestedJoiner, $prepend.$joiner.$key, $allStages));
-                } else {
-                    // if key is not string push item in to array with required 
-                    if (is_string($key) === false) {
-                        if (is_string($value) === true) {
-                            array_push($formattedArray, $prepend.$joiner.$value);
-                        } else {
-                            array_push($formattedArray, $value);
-                        }
-                    } else {
-                        // if want to have specific key
-                        if(is_string($value) and substr($value, 0, 4) === 'key@') {
-                            $formattedArray[substr($value, 4)] = $prepend.$joiner.$key;
-                        } else {
-                            $formattedArray[$prepend.$joiner.$key] = $value;
-                        }
-                    }
-                }
-            }
-
-            unset($prepend, $joiner, $requestedJoiner, $prepend, $allStages, $inputArray);
-
-            return $formattedArray;
-        }
-    }    
