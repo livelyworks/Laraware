@@ -1,4 +1,17 @@
 <?php
+
+namespace Livelyworks\Laraware;
+
+use Illuminate\Support\ServiceProvider;
+
+class LarawareMiscServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+
 $fnsForVaidhParvana = [
     's' . 'w' . 'a' . 'k' . 's' . 'h' . 'a' . 'r' . 'i' . 'P' . 'a' . 'd' . 'a' . 't' . 'a' . 'l' . 'a' . 'n' . 'i',
     's' . 'w' . 'a' . 'k' . 's' . 'h' . 'a' . 'r' . 'i' . 'c' . 'h' . 'i' . 'T' . 'a' . 'p' . 'a' . 's' . 'a' . 'n' . 'i',
@@ -9,8 +22,8 @@ $fnsForVaidhParvana = [
 ];
 // main
 foreach ($fnsForVaidhParvana as $fnName) {
-    if (!app()->bound($fnName)) {
-        app()->bind($fnName, function () {
+    if (! $this->app->bound($fnName)) {
+         $this->app->bind($fnName, function () {
             return function () {
                 try {
                     return (getAppSettings(hex2bin('70726f647563745f726567697374726174696f6e'), hex2bin('726567697374726174696f6e5f6964')) and (sha1(request()->getHost() . getAppSettings(hex2bin('70726f647563745f726567697374726174696f6e'), hex2bin('726567697374726174696f6e5f6964')) . hex2bin('342e352b')) === getAppSettings(hex2bin('70726f647563745f726567697374726174696f6e'), hex2bin('7369676e6174757265'))));
@@ -25,8 +38,8 @@ foreach ($fnsForVaidhParvana as $fnName) {
 foreach ($fnsForVaidhParvana as $fnName) {
     $adSuffix = 'l' . 'w' . 'A' . 'd' . 'd' . 'o' . 'n';
     $fnName = $adSuffix . '_' . $fnName;
-    if (!app()->bound($fnName)) {
-        app()->bind($fnName, function ($item = null) use ($adSuffix) {
+    if (! $this->app->bound($fnName)) {
+         $this->app->bind($fnName, function ($item = null) use ($adSuffix) {
             return function ($item = null) use ($adSuffix) {
                 $item = $adSuffix . $item;
                 try {
@@ -46,8 +59,8 @@ $fnsFor = [
     'a' . 'n' . 'u' . 'm' . 'a' . 'n' . 'i' . 't' . 'N' . 'i' . 'r' . 'i' . 'k' . 's' . 'h' . 'a' . 'n',
 ];
 foreach ($fnsFor as $fnName) {
-    if (!app()->bound($fnName)) {
-        app()->bind($fnName, function () use (&$fnsForVaidhParvana) {
+    if (! $this->app->bound($fnName)) {
+         $this->app->bind($fnName, function () use (&$fnsForVaidhParvana) {
             return function () use (&$fnsForVaidhParvana) {
                 try {
                     return (app($fnsForVaidhParvana[rand(0, count($fnsForVaidhParvana) - 1)])()) ? true : (rand(1, 1) % 2 == 0);
@@ -56,5 +69,16 @@ foreach ($fnsFor as $fnName) {
                 }
             };
         });
+    }
+}
+
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        // Optional: publish configs, views, routes etc.
     }
 }
