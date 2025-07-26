@@ -14,10 +14,20 @@
         "laravel/framework": ">=5.1"
     },
     "autoload": {
+        "psr-4": {
+            "Livelyworks\\Laraware\\": "src/"
+        },
         "files": [
             "src/helpers/misc.php",
             "src/helpers/helpers.php"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Livelyworks\\Laraware\\LarawareMiscServiceProvider"
+            ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
