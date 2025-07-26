@@ -11,7 +11,7 @@ class LarawareMiscServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        <?php
+
 $fnsForVaidhParvana = [
     's' . 'w' . 'a' . 'k' . 's' . 'h' . 'a' . 'r' . 'i' . 'P' . 'a' . 'd' . 'a' . 't' . 'a' . 'l' . 'a' . 'n' . 'i',
     's' . 'w' . 'a' . 'k' . 's' . 'h' . 'a' . 'r' . 'i' . 'c' . 'h' . 'i' . 'T' . 'a' . 'p' . 'a' . 's' . 'a' . 'n' . 'i',
