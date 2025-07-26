@@ -18,7 +18,6 @@
             "Livelyworks\\Laraware\\": "src/"
         },
         "files": [
-            "src/helpers/misc.php",
             "src/helpers/helpers.php"
         ]
     },
